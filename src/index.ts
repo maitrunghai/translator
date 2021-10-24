@@ -44,9 +44,13 @@ import { VueElement, QuizQuestion, QuizInfo } from "./types";
 // }
 
 const getQuestionInfo = () => {
-  const rootObject = document.getElementsByClassName("well--text--2H_p0 well--transition-active--35hDP")[0].textContent;
+  const rootObject = document.getElementsByClassName("well--text--2H_p0 well--transition-active--35hDP")[0];
+  if (!rootObject)
+  {
+    return rootObject
+  }
 
-  return rootObject;
+  return rootObject.textContent;
 };
 
 
@@ -64,7 +68,8 @@ var sub = "";
     const questionInfo = getQuestionInfo();
     if (questionInfo && sub != questionInfo)
     {
-      console.log(questionInfo)
+      console.log(questionInfo);
+      sub = questionInfo;
     }
     // if (questionInfo.questionID !== lastQuestionID) {
     //   for (const q of quiz.data.questions) {
