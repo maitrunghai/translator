@@ -45,18 +45,16 @@ import { VueElement, QuizQuestion, QuizInfo } from "./types";
 
 const getQuestionInfo = () => {
   const rootObject = document.getElementsByClassName("well--text--2H_p0 well--transition-active--35hDP")[0];
-  if (!rootObject)
-  {
-    return rootObject
+  try {
+    return rootObject.textContent;
+  } catch (error) {
+    return;
   }
-
-  return rootObject.textContent;
 };
 
 
 const msg = `%c 
-    Script created by gbaranski#5119! 
-    https://github.com/gbaranski/quizizz-cheat
+    Start script
       `;
 
 var sub = "";
@@ -68,18 +66,11 @@ var sub = "";
     const questionInfo = getQuestionInfo();
     if (questionInfo && sub != questionInfo)
     {
+      console.log("log")
       console.log(questionInfo);
+      console.log(sub)
       sub = questionInfo;
     }
-    // if (questionInfo.questionID !== lastQuestionID) {
-    //   for (const q of quiz.data.questions) {
-    //     if (questionInfo.questionID === q._id) {
-    //       console.log({q});
-    //       highlightAnswers(q);
-    //       lastQuestionID = questionInfo.questionID;
-    //     }
-    //   }
-    // }
   }, 500)
 
 })();
