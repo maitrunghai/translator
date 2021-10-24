@@ -5,12 +5,12 @@ const obfuscator = require('webpack-obfuscator');
 
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/index.js',
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.jsx?$/,
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
     ],

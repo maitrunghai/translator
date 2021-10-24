@@ -1,21 +1,6 @@
-/*
-Quizizz-cheat
-Copyright (C) gbaranski
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-github repository: https://github.com/gbaranski/quizizz-cheat
-email: root@gbaranski.com
-*/
-
-
-
-
-import { VueElement, QuizQuestion, QuizInfo } from "./types";
+// const translate = require('google-translate-api');
+// const { translate } = require('free-translate');
+// const translate = require("google-translate-free");
 
 // const changeElementOpacity = (elem: HTMLElement) => {
 //   elem.style.opacity = "20%";
@@ -44,7 +29,9 @@ import { VueElement, QuizQuestion, QuizInfo } from "./types";
 // }
 
 const getQuestionInfo = () => {
-  const rootObject = document.getElementsByClassName("well--text--2H_p0 well--transition-active--35hDP")[0];
+  const rootObject = document.getElementsByClassName(
+    "well--text--2H_p0 well--transition-active--35hDP"
+  )[0];
   try {
     return rootObject.textContent;
   } catch (error) {
@@ -52,25 +39,28 @@ const getQuestionInfo = () => {
   }
 };
 
+var subText = "";
+let target = 'vi';
+
 
 const msg = `%c 
     Start script
       `;
 
-var sub = "";
 
 (async () => {
   console.log(msg, "color: red;");
 
   setInterval(() => {
     const questionInfo = getQuestionInfo();
-    if (questionInfo && sub != questionInfo)
-    {
-      console.log("log")
+    if (questionInfo && subText != questionInfo) {
       console.log(questionInfo);
-      console.log(sub)
-      sub = questionInfo;
-    }
-  }, 500)
+      subText = questionInfo;
 
+      // Omit this line if loading form a CDN
+      // var translatedText = translate('Hello', {to: 'vi' });
+
+      // console.log(translatedText); // Hello World
+    }
+  }, 500);
 })();
