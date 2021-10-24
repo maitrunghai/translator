@@ -1,7 +1,7 @@
 // const translate = require('google-translate-api');
 // const { translate } = require('free-translate');
 // const translate = require("google-translate-free");
-
+import axios from 'axios';
 // const changeElementOpacity = (elem: HTMLElement) => {
 //   elem.style.opacity = "20%";
 // };
@@ -40,7 +40,7 @@ const getQuestionInfo = () => {
 };
 
 var subText = "";
-let target = 'vi';
+let language = 'vi';
 
 
 const msg = `%c 
@@ -57,10 +57,24 @@ const msg = `%c
       console.log(questionInfo);
       subText = questionInfo;
 
-      // Omit this line if loading form a CDN
-      // var translatedText = translate('Hello', {to: 'vi' });
-
-      // console.log(translatedText); // Hello World
+      const response = axios
+      .post(
+        'https://translation.googleapis.com/language/translate/v2',
+        {},
+        {
+          params: {
+            q: subText,
+            target: language,
+            key: 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM'
+          }
+        }
+      )
+      .then((response) => {
+        setConvertedText(response.data.data.translations[0].translatedText);
+      })
+      .catch((err) => {
+        console.log('rest api error', err);
+      });
     }
   }, 500);
 })();

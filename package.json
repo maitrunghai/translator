@@ -25,6 +25,7 @@
   "dependencies": {
     "@babel/core": "^7.15.8",
     "@google-cloud/translate": "^6.3.1",
+    "axios": "^0.23.0",
     "babel-loader": "^8.2.3",
     "free-translate": "^0.4.0",
     "google-translate-api": "^2.3.0"
